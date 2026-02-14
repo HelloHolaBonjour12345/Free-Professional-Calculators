@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Percentage Calculator | Free Professional Calculators</title>
+<meta name="description" content="Free professional percentage calculator for increases, decreases, percentage difference and reverse percentage calculations.">
+<meta name="keywords" content="percentage calculator, percent increase, percent decrease, percentage difference tool">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourdomain.com/percentage.html">
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+.calculator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 20px;
+}
+
+.calculator-box {
+    width: 100%;
+    max-width: 700px;
+    padding: 55px;
+    background: linear-gradient(145deg,#111827,#0f172a);
+    border-radius: 18px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+.calculator-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.calculator-box input,
+.calculator-box select,
+.calculator-box button {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+.calculator-box input,
+.calculator-box select {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+.calculator-box button {
+    background: #ff6a00;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.calculator-box button:hover {
+    background: #ff8533;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ff6a00;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.content-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: rgba(30,41,59,0.6);
+    border-radius: 14px;
+}
+
+.content-section p {
+    margin-bottom: 18px;
+    line-height: 1.7;
+    color: #e2e8f0;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="home-link">Home</a>
+
+<header class="main-header">
+    <h1>Percentage Calculator</h1>
+    <p class="subtitle">Accurately calculate percentage changes and values.</p>
+</header>
+
+<div class="calculator-container">
+    <div class="calculator-box">
+        <h2>Percentage Calculations</h2>
+        <select id="type">
+            <option value="increase">Percentage Increase</option>
+            <option value="decrease">Percentage Decrease</option>
+            <option value="value">Find Percentage of a Number</option>
+        </select>
+        <input type="number" id="num1" placeholder="Original Value" required>
+        <input type="number" id="num2" placeholder="New Value or Percentage" required>
+        <button onclick="calculatePercentage()">Calculate</button>
+        <div class="result" id="result"></div>
+        <div class="ad-space">Advertisement Space</div>
+    </div>
+</div>
+
+<section class="content-section">
+<p>
+Percentage calculations are fundamental in finance, retail, statistics and everyday decision-making. Whether evaluating investment growth, calculating discounts, comparing price changes or analyzing performance metrics, percentage tools provide clarity and precision.
+</p>
+
+<p>
+A percentage increase measures growth relative to an original value. It is calculated by dividing the difference between new and original values by the original value, then multiplying by one hundred. Percentage decrease follows the same structure but reflects reduction instead of growth.
+</p>
+
+<p>
+Understanding percentage movement is essential in budgeting, forecasting and financial planning. Businesses use percentage analysis to evaluate revenue trends, cost reductions and pricing adjustments.
+</p>
+
+<p>
+This calculator supports three core percentage functions: calculating increases, decreases and determining what percentage a value represents of another number. The structured interface allows accurate, fast results without manual formulas.
+</p>
+
+<p>
+For professional and academic use, precise percentage interpretation supports better decision-making, financial awareness and performance evaluation.
+</p>
+</section>
+
+<script>
+function calculatePercentage() {
+    var type = document.getElementById('type').value;
+    var num1 = parseFloat(document.getElementById('num1').value);
+    var num2 = parseFloat(document.getElementById('num2').value);
+
+    if (!num1 || !num2) {
+        document.getElementById('result').innerHTML = "Please enter valid values.";
+        return;
+    }
+
+    var result;
+
+    if (type === 'increase') {
+        result = ((num2 - num1) / num1) * 100;
+        document.getElementById('result').innerHTML = "Percentage Increase: " + result.toFixed(2) + "%";
+    }
+    else if (type === 'decrease') {
+        result = ((num1 - num2) / num1) * 100;
+        document.getElementById('result').innerHTML = "Percentage Decrease: " + result.toFixed(2) + "%";
+    }
+    else {
+        result = (num2 / num1) * 100;
+        document.getElementById('result').innerHTML = "Result: " + result.toFixed(2) + "%";
+    }
+}
+</script>
+
+</body>
+</h
