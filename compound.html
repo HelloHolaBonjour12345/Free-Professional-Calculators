@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Compound Interest Calculator | Free Professional Calculators</title>
+<meta name="description" content="Free professional compound interest calculator to project investment growth with regular contributions and compounding periods.">
+<meta name="keywords" content="compound interest calculator, investment growth calculator, savings calculator, interest projection tool">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourdomain.com/compound.html">
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+.calculator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 20px;
+}
+
+.calculator-box {
+    width: 100%;
+    max-width: 700px;
+    padding: 55px;
+    background: linear-gradient(145deg,#111827,#0f172a);
+    border-radius: 18px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+.calculator-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.calculator-box input,
+.calculator-box select,
+.calculator-box button {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+.calculator-box input,
+.calculator-box select {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+.calculator-box button {
+    background: #ff6a00;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.calculator-box button:hover {
+    background: #ff8533;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ff6a00;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.content-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: rgba(30,41,59,0.6);
+    border-radius: 14px;
+}
+
+.content-section h3 {
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    margin-bottom: 18px;
+    line-height: 1.7;
+    color: #e2e8f0;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="home-link">Home</a>
+
+<header class="main-header">
+    <h1>Compound Interest Calculator</h1>
+    <p class="subtitle">Project long-term investment and savings growth with precision.</p>
+</header>
+
+<div class="calculator-container">
+    <div class="calculator-box">
+        <h2>Calculate Compound Growth</h2>
+        <input type="number" id="principal" placeholder="Initial Investment" required>
+        <input type="number" id="rate" placeholder="Annual Interest Rate (%)" required>
+        <input type="number" id="years" placeholder="Number of Years" required>
+        <input type="number" id="contribution" placeholder="Monthly Contribution (Optional)">
+        <select id="frequency">
+            <option value="12">Monthly Compounding</option>
+            <option value="4">Quarterly Compounding</option>
+            <option value="1">Annual Compounding</option>
+        </select>
+        <button onclick="calculateCompound()">Calculate Growth</button>
+        <div class="result" id="result"></div>
+        <div class="ad-space">Advertisement Space</div>
+    </div>
+</div>
+
+<section class="content-section">
+<h3>Understanding Compound Interest</h3>
+
+<p>
+Compound interest is one of the most powerful concepts in finance. Unlike simple interest, compound interest calculates returns not only on the original principal but also on accumulated interest over time. This creates exponential growth, particularly when investments are held for extended periods.
+</p>
+
+<p>
+The formula for compound interest incorporates principal amount, annual interest rate, compounding frequency and time horizon. Additional periodic contributions significantly accelerate growth by increasing the base on which interest is calculated.
+</p>
+
+<p>
+Long-term investors often benefit from compounding because gains generate further gains. Even modest interest rates can produce substantial results when allowed to compound consistently over many years.
+</p>
+
+<p>
+Financial planning strategies frequently rely on compound growth projections to evaluate retirement savings, education funds and long-term investment portfolios. Adjusting contribution levels and timeframes helps illustrate how disciplined saving improves outcomes.
+</p>
+
+<p>
+This calculator provides transparent projections based on standard compound interest formulas. Actual investment performance may vary depending on market conditions, fees and risk factors.
+</p>
+
+<p>
+Understanding compound interest empowers individuals to make informed decisions that align with long-term financial security and wealth-building objectives.
+</p>
+
+</section>
+
+<script>
+function calculateCompound() {
+    var P = parseFloat(document.getElementById('principal').value);
+    var r = parseFloat(document.getElementById('rate').value) / 100;
+    var t = parseFloat(document.getElementById('years').value);
+    var contribution = parseFloat(document.getElementById('contribution').value) || 0;
+    var n = parseInt(document.getElementById('frequency').value);
+
+    if (!P || !r || !t) {
+        document.getElementById('result').innerHTML = "Please enter valid values in required fields.";
+        return;
+    }
+
+    var compoundAmount = P * Math.pow((1 + r / n), n * t);
+
+    var contributionFuture = 0;
+    if (contribution > 0) {
+        var monthlyRate = r / 12;
+        var months = t * 12;
+        contributionFuture = contribution * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+    }
+
+    var total = compoundAmount + contributionFuture;
+
+    document.getElementById('result').innerHTML =
+        "Projected Value: " + total.toFixed(2);
+}
+</script>
+
+</body>
+</html>
