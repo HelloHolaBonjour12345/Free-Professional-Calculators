@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tax Calculator | Free Professional Income Tax Estimator</title>
+
+<meta name="description" content="Estimate income tax instantly with our free professional tax calculator. Calculate tax liability based on income and tax rate quickly and accurately.">
+
+<link rel="canonical" href="https://yourdomain.com/tax-calculator.html">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<a href="index.html" class="home-button">Home</a>
+
+<div class="calculator-container">
+
+<h1>Professional Tax Calculator</h1>
+
+<!-- AdSense Space -->
+<div class="ad-space">
+Advertisement Space
+</div>
+
+<div class="calculator-box">
+
+<input type="number" id="income" placeholder="Enter Annual Income" class="input-large">
+
+<input type="number" id="taxRate" placeholder="Enter Tax Rate (%)" class="input-large">
+
+<button onclick="calculateTax()" class="orange-button">Calculate Tax</button>
+
+<h2 id="result"></h2>
+
+</div>
+
+</div>
+
+<div class="content-section">
+
+<h2>Accurate and Professional Tax Estimation</h2>
+
+<p>
+Understanding your tax liability is essential for financial planning, budgeting and compliance. 
+This professional tax calculator allows individuals, freelancers and business owners to estimate 
+their income tax quickly and accurately using a simple percentage-based model.
+</p>
+
+<p>
+By entering your annual income and applicable tax rate, you can instantly calculate the total tax owed 
+as well as your estimated net income after tax. This tool is designed to provide clarity and support 
+better financial decision-making.
+</p>
+
+<p>
+Tax planning is a critical part of responsible financial management. Whether you are preparing for 
+annual tax filings, forecasting quarterly payments or reviewing salary adjustments, having a clear 
+estimate of your tax obligation can prevent unexpected liabilities.
+</p>
+
+<p>
+This calculator uses a straightforward percentage calculation model. While actual tax systems may 
+include brackets, deductions and credits, this estimator provides a fast and reliable baseline figure 
+that can be used for budgeting and planning purposes.
+</p>
+
+<p>
+Because this tool is browser-based and free to use, it provides immediate access without subscriptions 
+or software downloads. It works across desktop and mobile devices, making it convenient for personal 
+and professional use.
+</p>
+
+<p>
+Offering reliable financial tools such as this tax calculator enhances user trust and improves the 
+overall authority of your website. High-quality financial calculators also contribute positively to 
+search engine visibility and long-term traffic growth.
+</p>
+
+</div>
+
+<script>
+
+function calculateTax() {
+
+let income = parseFloat(document.getElementById("income").value);
+let taxRate = parseFloat(document.getElementById("taxRate").value);
+
+if (isNaN(income) || isNaN(taxRate)) {
+document.getElementById("result").innerText = "Please enter valid numbers.";
+return;
+}
+
+let taxAmount = income * (taxRate / 100);
+let netIncome = income - taxAmount;
+
+document.getElementById("result").innerText =
+"Tax Owed: " + taxAmount.toFixed(2) +
+" | Net Income: " + netIncome.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
