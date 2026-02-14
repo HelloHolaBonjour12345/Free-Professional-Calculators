@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mortgage Calculator | Free Professional Calculators</title>
+<meta name="description" content="Free professional mortgage calculator to estimate monthly payments, total interest, and long-term housing costs with accurate amortization formulas.">
+<meta name="keywords" content="mortgage calculator, home loan calculator, monthly mortgage payment, property loan estimator, amortization calculator">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourdomain.com/mortgage.html">
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+.calculator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 20px;
+}
+
+.calculator-box {
+    width: 100%;
+    max-width: 700px;
+    padding: 55px;
+    background: linear-gradient(145deg,#111827,#0f172a);
+    border-radius: 18px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+.calculator-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.calculator-box input,
+.calculator-box button {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+.calculator-box input {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+.calculator-box button {
+    background: #ff6a00;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.calculator-box button:hover {
+    background: #ff8533;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ff6a00;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.content-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: rgba(30,41,59,0.6);
+    border-radius: 14px;
+}
+
+.content-section h3 {
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    margin-bottom: 18px;
+    line-height: 1.7;
+    color: #e2e8f0;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="home-link">Home</a>
+
+<header class="main-header">
+    <h1>Mortgage Calculator</h1>
+    <p class="subtitle">Estimate home loan payments and understand long-term property financing costs.</p>
+</header>
+
+<div class="calculator-container">
+    <div class="calculator-box">
+        <h2>Calculate Your Mortgage</h2>
+        <input type="number" id="homePrice" placeholder="Home Price" required>
+        <input type="number" id="downPayment" placeholder="Down Payment" required>
+        <input type="number" id="interestRate" placeholder="Annual Interest Rate (%)" required>
+        <input type="number" id="loanTerm" placeholder="Loan Term (Years)" required>
+        <button onclick="calculateMortgage()">Calculate Mortgage</button>
+        <div class="result" id="result"></div>
+        <div class="ad-space">Advertisement Space</div>
+    </div>
+</div>
+
+<section class="content-section">
+<h3>Understanding Mortgage Payments</h3>
+
+<p>
+A mortgage is one of the most significant financial commitments most individuals will undertake. Understanding how monthly payments are structured is essential when planning for long-term home ownership. This mortgage calculator helps estimate monthly repayments based on property value, down payment, interest rate and loan term.
+</p>
+
+<p>
+The calculation begins by subtracting the down payment from the total home price to determine the principal loan amount. The interest rate is converted into a monthly rate and applied across the full loan duration using the standard amortization formula.
+</p>
+
+<p>
+Mortgage terms commonly range from 15 to 30 years. Shorter terms typically result in higher monthly payments but significantly reduce total interest paid. Longer terms lower monthly costs but increase overall borrowing expenses over time.
+</p>
+
+<p>
+Interest rates are influenced by credit score, market conditions and lender policies. Even a small rate reduction can save thousands over the lifetime of a mortgage. Comparing lenders and understanding fixed versus variable rate structures is therefore critical.
+</p>
+
+<p>
+This calculator provides an estimate for planning purposes and does not include property taxes, insurance, or lender-specific fees. For detailed and binding information, consult a licensed financial advisor or mortgage specialist.
+</p>
+
+<p>
+By using structured calculations before purchasing property, individuals can make informed decisions that align with long-term financial stability and housing goals.
+</p>
+
+</section>
+
+<script>
+function calculateMortgage() {
+    var price = parseFloat(document.getElementById('homePrice').value);
+    var down = parseFloat(document.getElementById('downPayment').value);
+    var rate = parseFloat(document.getElementById('interestRate').value);
+    var years = parseFloat(document.getElementById('loanTerm').value);
+
+    if (!price || !down || !rate || !years) {
+        document.getElementById('result').innerHTML = "Please enter valid values in all fields.";
+        return;
+    }
+
+    var principal = price - down;
+    var monthlyRate = rate / 100 / 12;
+    var payments = years * 12;
+
+    var monthlyPayment = (principal * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -payments));
+    var totalPayment = monthlyPayment * payments;
+    var totalInterest = totalPayment - principal;
+
+    document.getElementById('result').innerHTML =
+        "Monthly Payment: " + monthlyPayment.toFixed(2) + "<br>" +
+        "Total Payment: " + totalPayment.toFixed(2) + "<br>" +
+        "Total Interest: " + totalInterest.toFixed(2);
+}
+</script>
+
+</body>
+</html>
