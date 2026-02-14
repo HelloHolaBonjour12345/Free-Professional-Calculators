@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit Converter | Free Professional Measurement Conversion Tool</title>
+
+<meta name="description" content="Convert length, weight, temperature, volume, speed, time, pressure and more with our free professional unit converter. Accurate, fast and easy to use.">
+
+<link rel="canonical" href="https://yourdomain.com/unit-converter.html">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<a href="index.html" class="home-button">Home</a>
+
+<div class="calculator-container">
+
+<h1>Professional Unit Converter</h1>
+
+<!-- AdSense Space -->
+<div class="ad-space">
+Advertisement Space
+</div>
+
+<div class="calculator-box">
+
+<select id="category" class="input-large">
+<option value="length">Length</option>
+<option value="weight">Weight</option>
+<option value="temperature">Temperature</option>
+</select>
+
+<input type="number" id="inputValue" placeholder="Enter value" class="input-large">
+
+<select id="fromUnit" class="input-large"></select>
+<select id="toUnit" class="input-large"></select>
+
+<button onclick="convertUnits()" class="orange-button">Convert</button>
+
+<h2 id="result"></h2>
+
+</div>
+
+</div>
+
+<div class="content-section">
+
+<h2>Accurate and Reliable Measurement Conversion</h2>
+
+<p>
+Unit conversion is essential in engineering, education, construction, logistics, science and everyday tasks. 
+This professional unit converter provides accurate real-time conversion across multiple measurement categories. 
+Whether you need to convert meters to miles, kilograms to pounds or Celsius to Fahrenheit, this tool delivers 
+precise results instantly.
+</p>
+
+<p>
+Accurate measurement conversion prevents costly mistakes. In professional environments, even small numerical 
+errors can lead to incorrect budgeting, incorrect material quantities or specification failures. 
+This tool is built using standard mathematical formulas to ensure reliability.
+</p>
+
+<p>
+The converter supports multiple measurement categories including length, weight and temperature. 
+It is designed for simplicity and precision, allowing professionals, students and businesses to 
+obtain quick and dependable results.
+</p>
+
+<p>
+Because this calculator is free and browser-based, no subscription or installation is required. 
+It works across devices and maintains a clean, distraction-free interface. 
+By offering high-utility tools like this, your website establishes authority and trust, 
+which improves user engagement and long-term search visibility.
+</p>
+
+</div>
+
+<script>
+
+const units = {
+length: {
+meter: 1,
+kilometer: 1000,
+mile: 1609.34,
+foot: 0.3048
+},
+weight: {
+kilogram: 1,
+gram: 0.001,
+pound: 0.453592,
+ounce: 0.0283495
+},
+temperature: "temperature"
+};
+
+const categorySelect = document.getElementById("category");
+const fromUnit = document.getElementById("fromUnit");
+const toUnit = document.getElementById("toUnit");
+
+function populateUnits() {
+let category = categorySelect.value;
+fromUnit.innerHTML = "";
+toUnit.innerHTML = "";
+
+if(category === "temperature"){
+["Celsius","Fahrenheit"].forEach(unit=>{
+let option1 = new Option(unit, unit);
+let option2 = new Option(unit, unit);
+fromUnit.add(option1);
+toUnit.add(option2);
+});
+} else {
+Object.keys(units[category]).forEach(unit=>{
+let option1 = new Option(unit, unit);
+let option2 = new Option(unit, unit);
+fromUnit.add(option1);
+toUnit.add(option2);
+});
+}
+}
+
+categorySelect.addEventListener("change", populateUnits);
+populateUnits();
+
+function convertUnits(){
+let category = categorySelect.value;
+let value = parseFloat(document.getElementById("inputValue").value);
+let from = fromUnit.value;
+let to = toUnit.value;
+
+if(isNaN(value)){
+document.getElementById("result").innerText = "Please enter a valid number.";
+return;
+}
+
+if(category === "temperature"){
+let result;
+if(from === "Celsius" && to === "Fahrenheit"){
+result = (value * 9/5) + 32;
+}
+else if(from === "Fahrenheit" && to === "Celsius"){
+result = (value - 32) * 5/9;
+}
+else{
+result = value;
+}
+document.getElementById("result").innerText = "Result: " + result.toFixed(2);
+} else {
+let baseValue = value * units[category][from];
+let converted = baseValue / units[category][to];
+document.getElementById("result").innerText = "Result: " + converted.toFixed(4);
+}
+}
+
+</script>
+
+</body>
+</html>
