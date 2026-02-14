@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BMI Calculator | Free Professional Calculators</title>
+<meta name="description" content="Free professional BMI calculator to determine Body Mass Index based on height and weight. Instant results with health category classification.">
+<meta name="keywords" content="bmi calculator, body mass index calculator, health calculator, weight calculator, fitness tools">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourdomain.com/bmi.html">
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+.calculator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 20px;
+}
+
+.calculator-box {
+    width: 100%;
+    max-width: 650px;
+    padding: 55px;
+    background: linear-gradient(145deg,#111827,#0f172a);
+    border-radius: 18px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+.calculator-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.calculator-box input,
+.calculator-box button {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+.calculator-box input {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+.calculator-box button {
+    background: #ff6a00;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.calculator-box button:hover {
+    background: #ff8533;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ff6a00;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.content-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: rgba(30,41,59,0.6);
+    border-radius: 14px;
+}
+
+.content-section h3 {
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    margin-bottom: 18px;
+    line-height: 1.7;
+    color: #e2e8f0;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="home-link">Home</a>
+
+<header class="main-header">
+    <h1>Body Mass Index (BMI) Calculator</h1>
+    <p class="subtitle">Quickly assess weight category based on height and body weight.</p>
+</header>
+
+<div class="calculator-container">
+    <div class="calculator-box">
+        <h2>Calculate Your BMI</h2>
+        <input type="number" id="weight" placeholder="Weight (kg)" required>
+        <input type="number" id="height" placeholder="Height (cm)" required>
+        <button onclick="calculateBMI()">Calculate BMI</button>
+        <div class="result" id="result"></div>
+        <div class="ad-space">Advertisement Space</div>
+    </div>
+</div>
+
+<section class="content-section">
+<h3>What Is Body Mass Index?</h3>
+
+<p>
+Body Mass Index (BMI) is a widely used measurement that estimates whether an individual has a healthy body weight relative to their height. It is calculated by dividing weight in kilograms by height in meters squared. BMI provides a general indicator of body fatness and is commonly used in medical and public health assessments.
+</p>
+
+<p>
+The standard BMI categories are: underweight (below 18.5), normal weight (18.5–24.9), overweight (25–29.9), and obesity (30 or above). These ranges help healthcare professionals evaluate potential health risks associated with body weight.
+</p>
+
+<p>
+While BMI is a useful screening tool, it does not directly measure body fat percentage. Factors such as muscle mass, bone density, age and gender are not reflected in BMI calculations. For example, athletes with high muscle mass may have a higher BMI without having excess body fat.
+</p>
+
+<p>
+Maintaining a healthy BMI is generally associated with reduced risk of cardiovascular disease, type 2 diabetes, certain cancers and other chronic conditions. However, BMI should be considered alongside other health indicators such as waist circumference, blood pressure and lifestyle habits.
+</p>
+
+<p>
+This calculator provides an instant BMI estimate to support personal health awareness and goal tracking. It is intended for informational purposes and does not replace professional medical advice.
+</p>
+
+<p>
+For a comprehensive evaluation of your health status, consult a qualified healthcare professional who can assess multiple factors beyond BMI alone.
+</p>
+
+</section>
+
+<script>
+function calculateBMI() {
+    var weight = parseFloat(document.getElementById('weight').value);
+    var heightCm = parseFloat(document.getElementById('height').value);
+
+    if (!weight || !heightCm) {
+        document.getElementById('result').innerHTML = "Please enter valid values in all fields.";
+        return;
+    }
+
+    var heightM = heightCm / 100;
+    var bmi = weight / (heightM * heightM);
+
+    var category = "";
+    if (bmi < 18.5) {
+        category = "Underweight";
+    } else if (bmi < 25) {
+        category = "Normal weight";
+    } else if (bmi < 30) {
+        category = "Overweight";
+    } else {
+        category = "Obesity";
+    }
+
+    document.getElementById('result').innerHTML =
+        "BMI: " + bmi.toFixed(2) + "<br>" +
+        "Category: " + category;
+}
+</script>
+
+</body>
+</html>
