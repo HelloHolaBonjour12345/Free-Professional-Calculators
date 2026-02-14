@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Calorie Calculator | Free Professional Calculators</title>
+<meta name="description" content="Free professional calorie calculator to estimate daily caloric needs based on age, gender, weight, height and activity level.">
+<meta name="keywords" content="calorie calculator, daily calorie needs, BMR calculator, TDEE calculator, weight loss calculator">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourdomain.com/calorie.html">
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+.calculator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 20px;
+}
+
+.calculator-box {
+    width: 100%;
+    max-width: 700px;
+    padding: 55px;
+    background: linear-gradient(145deg,#111827,#0f172a);
+    border-radius: 18px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+.calculator-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.calculator-box input,
+.calculator-box select,
+.calculator-box button {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+.calculator-box input,
+.calculator-box select {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+.calculator-box button {
+    background: #ff6a00;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.calculator-box button:hover {
+    background: #ff8533;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ff6a00;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.content-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: rgba(30,41,59,0.6);
+    border-radius: 14px;
+}
+
+.content-section h3 {
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    margin-bottom: 18px;
+    line-height: 1.7;
+    color: #e2e8f0;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="home-link">Home</a>
+
+<header class="main-header">
+    <h1>Daily Calorie Calculator</h1>
+    <p class="subtitle">Estimate your daily calorie requirements based on metabolic rate and activity level.</p>
+</header>
+
+<div class="calculator-container">
+    <div class="calculator-box">
+        <h2>Calculate Your Daily Calories</h2>
+        <input type="number" id="age" placeholder="Age" required>
+        <select id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <input type="number" id="weight" placeholder="Weight (kg)" required>
+        <input type="number" id="height" placeholder="Height (cm)" required>
+        <select id="activity">
+            <option value="1.2">Sedentary (little or no exercise)</option>
+            <option value="1.375">Lightly active (1-3 days/week)</option>
+            <option value="1.55">Moderately active (3-5 days/week)</option>
+            <option value="1.725">Very active (6-7 days/week)</option>
+            <option value="1.9">Extremely active (physical job or training)</option>
+        </select>
+        <button onclick="calculateCalories()">Calculate Calories</button>
+        <div class="result" id="result"></div>
+        <div class="ad-space">Advertisement Space</div>
+    </div>
+</div>
+
+<section class="content-section">
+<h3>Understanding Daily Calorie Needs</h3>
+
+<p>
+Daily calorie requirements depend on multiple physiological and lifestyle factors. This calculator estimates caloric needs using the Mifflin-St Jeor equation, which calculates Basal Metabolic Rate (BMR) and then adjusts for activity level to determine Total Daily Energy Expenditure (TDEE).
+</p>
+
+<p>
+Basal Metabolic Rate represents the number of calories your body requires at rest to maintain essential functions such as breathing, circulation and temperature regulation. Activity multipliers are then applied to reflect movement, exercise and occupational demands.
+</p>
+
+<p>
+Understanding calorie needs is essential for weight management. Consuming fewer calories than your TDEE may support weight loss, while consuming more may support weight gain. Maintaining intake close to TDEE typically supports weight stability.
+</p>
+
+<p>
+Individual factors such as muscle mass, hormonal balance, medical conditions and genetics also influence metabolism. Therefore, this calculator provides an estimate rather than an exact prescription.
+</p>
+
+<p>
+For structured nutrition planning, consultation with a registered dietitian or healthcare professional is recommended. Sustainable dietary changes combined with regular physical activity provide the most effective long-term results.
+</p>
+
+<p>
+This professional calorie calculator is intended to support informed health decisions through transparent mathematical estimation.
+</p>
+
+</section>
+
+<script>
+function calculateCalories() {
+    var age = parseFloat(document.getElementById('age').value);
+    var gender = document.getElementById('gender').value;
+    var weight = parseFloat(document.getElementById('weight').value);
+    var height = parseFloat(document.getElementById('height').value);
+    var activity = parseFloat(document.getElementById('activity').value);
+
+    if (!age || !weight || !height) {
+        document.getElementById('result').innerHTML = "Please enter valid values in all fields.";
+        return;
+    }
+
+    var bmr;
+    if (gender === "male") {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    } else {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+    }
+
+    var tdee = bmr * activity;
+
+    document.getElementById('result').innerHTML =
+        "Estimated Daily Calories: " + tdee.toFixed(0);
+}
+</script>
+
+</body>
+</html>
